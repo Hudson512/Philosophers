@@ -1,0 +1,46 @@
+Aqui estão as coisas que você precisa saber se quiser ter sucesso nesta tarefa:
+    • Um ou mais filósofos sentam-se em uma mesa redonda.
+        Há uma grande tigela de espaguete no meio da mesa.
+    • Os filósofos alternadamente comem, pensam ou dormem.
+        Enquanto comem, não pensam nem dormem;
+        enquanto pensam, não comem nem dormem; 
+        e, claro, enquanto dormem, não comem nem pensam.
+    • Também há garfos na mesa. Há tantos garfos quanto filósofos.
+    • Como servir e comer espaguete com apenas um garfo é muito inconveniente, um
+        filósofo pega o garfo direito e o esquerdo para comer, um em cada mão.
+    • Quando um filósofo termina de comer, ele coloca os garfos de volta na mesa e começa a dormir. 
+        Uma vez acordado, ele começa a pensar novamente. 
+        A simulação para quando um filósofo morre de fome.
+    • Todo filósofo precisa comer e nunca deve passar fome.
+    • Filósofos não falam uns com os outros.
+    • Filósofos não sabem se outro filósofo está prestes a morrer.
+    • Não é preciso dizer que filósofos devem evitar morrer!
+-----------------------------------------------------------------------------------------------------------
+Regras globais
+Você tem que escrever um programa para a parte obrigatória e outro para a parte bônus
+(se você decidir fazer a parte bônus). Ambos têm que obedecer às seguintes regras:
+• Variáveis ​​globais são proibidas!
+• Seu(s) programa(s) deve(m) receber os seguintes argumentos:
+    number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
+    ◦ number_of_philosophers: O número de filósofos e também o número de garfos.
+    ◦ time_to_die (em milissegundos): Se um filósofo não começou a comer time_to_die 
+        milissegundos desde o início de sua última refeição ou do início da simulação, ele morre.
+    ◦ time_to_eat (em milissegundos): O tempo que um filósofo leva para comer. Durante esse tempo, ele precisará segurar dois garfos.
+    ◦ time_to_sleep (em milissegundos): O tempo que um filósofo passará dormindo.
+    ◦ number_of_times_each_philosopher_must_eat (argumento opcional): Se todos os filósofos tiverem comido pelo menos number_of_times_each_philosopher_must_eat
+        vezes, a simulação para. Se não for especificado, a simulação para quando um filósofo morre.
+• Cada filósofo tem um número que varia de 1 a number_of_philosophers.
+• O filósofo número 1 fica ao lado do filósofo número number_of_philosophers.
+Qualquer outro filósofo número N fica entre o filósofo número N - 1 e o filósofo número N + 1.
+-----------------------------------------------------------------------------------------------------------
+Sobre os logs do seu programa:
+• Qualquer mudança de estado de um filósofo deve ser formatada da seguinte forma:
+◦ timestamp_in_ms X pegou um fork
+◦ timestamp_in_ms X está comendo
+◦ timestamp_in_ms X está dormindo
+◦ timestamp_in_ms X está pensando
+◦ timestamp_in_ms X morreu
+Substitua timestamp_in_ms pelo timestamp atual em milissegundos e X pelo número do filósofo.
+• Uma mensagem de estado exibida não deve ser misturada com outra mensagem.
+• Uma mensagem anunciando a morte de um filósofo deve ser exibida no máximo 10ms após a morte real do filósofo.
+• Novamente, os filósofos devem evitar morrer!
