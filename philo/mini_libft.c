@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:30:54 by hmateque          #+#    #+#             */
-/*   Updated: 2024/09/25 13:48:55 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:36:19 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	ft_atoi(const char *nptr)
 void    print_datas(t_philo_info *filo)
 {
     printf("N de filo = %d\n", filo->num_philo);
-    printf("T para morrer = %d\n", filo->time_to_die);
-    printf("T para comer = %d\n", filo->time_to_eat);
-    printf("T para dormir = %d\n", filo->time_to_sleep);
+    printf("T para morrer = %ld\n", filo->time_to_die);
+    printf("T para comer = %ld\n", filo->time_to_eat);
+    printf("T para dormir = %ld\n", filo->time_to_sleep);
     printf("N de refeicao = %d\n", filo->number_of_each);
 }

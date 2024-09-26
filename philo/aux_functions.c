@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:46:42 by hmateque          #+#    #+#             */
-/*   Updated: 2024/09/25 14:47:05 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:39:33 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,26 @@ void	*filosofar(void *arg)
 	filo = param->filo;
 	while (1)
 	{
-		printf("Filósofo %d está pensando...\n", id);
+		printf("%ldms %d is thinking\n", get_time_end(param->start, param->end),id);
 		pthread_mutex_lock(&filo->garfos[id]);
-		printf("Filósofo %d pegou um garfo...\n", id);
+		printf("%ldms %d has taken a fork\n", get_time_end(param->start, param->end), id);
 		pthread_mutex_lock(&filo->garfos[(id + 1) % filo->num_philo]);
-		printf("Filósofo %d está comendo...\n", id);
-		usleep(filo->time_to_eat * 1000);
+		printf("%ldms %d is eating\n", get_time_end(param->start, param->end), id);
+		usleep(filo->time_to_eat);
 		pthread_mutex_unlock(&filo->garfos[id]);
 		pthread_mutex_unlock(&filo->garfos[(id + 1) % filo->num_philo]);
-		printf("Filósofo %d está dormir...\n", id);
-		usleep(filo->time_to_die * 1000);
+		printf("%ldms %d is sleeping\n", get_time_end(param->start, param->end), id);
+		usleep(filo->time_to_sleep);
 	}
 	return (NULL);
 }
 
-int	ft_init(t_philo_info *filo)
+int	ft_init(t_philo_info *filo, struct timeval *start, struct timeval *end)
 {
 	int				i;
 	t_filo_param	*params;
 
+	gettimeofday(start, NULL);
 	filo->filosofos = (pthread_t *)malloc(sizeof(pthread_t) * filo->num_philo);
 	filo->garfos = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
 			* filo->num_philo);
@@ -54,6 +55,8 @@ int	ft_init(t_philo_info *filo)
 		filo->ids[i] = i;
 		params[i].filo = filo;
 		params[i].id = i;
+		params[i].start = start;
+		params[i].end = end;
 	}
 	i = -1;
 	while (++i < filo->num_philo)
@@ -66,11 +69,21 @@ void	add_value(t_philo_info *filo, int value, int i)
 	if (i == 1)
 		filo->num_philo = value;
 	else if (i == 2)
-		filo->time_to_die = value;
+		filo->time_to_die = (long int)(value * 1000);
 	else if (i == 3)
-		filo->time_to_eat = value;
+		filo->time_to_eat = (long int)(value * 1000);
 	else if (i == 4)
-		filo->time_to_sleep = value;
+		filo->time_to_sleep = (long int)(value * 1000);
 	else
 		filo->number_of_each = value;
+}
+
+long int	get_time_end(struct timeval *start, struct timeval *end)
+{
+	long int	total_time;
+
+	gettimeofday(end, NULL);
+	total_time = (end->tv_sec - start->tv_sec) * 1000 + (end->tv_usec
+			- start->tv_usec) / 1000;
+	return (total_time);
 }
