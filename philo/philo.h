@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 08:16:43 by hmateque          #+#    #+#             */
-/*   Updated: 2024/09/26 12:24:58 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/09/27 09:47:10 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,15 @@ typedef struct s_philo
 	long int		time_to_eat;
 	long int		time_to_sleep;
 	int				number_of_each;
+	int				flag_de_morte;
 }					t_philo_info;
 
 typedef struct s_filo_param
 {
 	t_philo_info	*filo;
 	int				id;
+	long int		last_meal_time;
 	struct timeval	*start;
-	struct timeval	*end;
 }					t_filo_param;
 
 void				*filosofar(void *arg);
@@ -44,10 +45,10 @@ void				add_value(t_philo_info *filo, int value, int i);
 int					is_digit(char c);
 int					ft_atoi(const char *nptr);
 int					error_stop(char *str);
-int					ft_init(t_philo_info *filo, struct timeval *start,
-						struct timeval *end);
+int					ft_init(t_philo_info *filo, struct timeval *start);
 int					checker_value_of_arguments(char *av);
 int					checker_of_arguments(int ac, char **av, t_philo_info *filo);
-long int			get_time_end(struct timeval *start, struct timeval *end);
+long int			get_time_end(struct timeval *start);
+long int			get_current_time(void);
 
 #endif
