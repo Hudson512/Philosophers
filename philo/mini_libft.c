@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:30:54 by hmateque          #+#    #+#             */
-/*   Updated: 2024/09/30 11:49:42 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:48:01 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ int	print_status(char *str, int id, t_philo_info *filo)
 		pthread_mutex_unlock(&filo->garfos[(id + 1) % filo->num_philo]);
 		return (1);
 	}
-	printf("%ldms %d %s\n", get_time_end(filo->start), id, str);
+	printf("%ldms %d %s\n", (get_current_time() - filo->start), id, str);
 	return (0);
 }
