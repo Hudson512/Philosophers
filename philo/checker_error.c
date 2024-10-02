@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:37:15 by hmateque          #+#    #+#             */
-/*   Updated: 2024/09/27 09:45:20 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/02 08:56:40 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,14 @@ int	checker_of_arguments(int ac, char **av, t_philo_info *filo)
 	if (ac < 6)
 		filo->number_of_each = 0;
 	return (0);
+}
+
+void	check_num_philo(t_philo_info *filo, int id)
+{
+	if (filo->num_philo == 1)
+	{
+		while (!filo->flag_de_morte)
+			usleep(filo->time_to_die);
+		pthread_mutex_unlock(&filo->garfos[id]);
+	}
 }

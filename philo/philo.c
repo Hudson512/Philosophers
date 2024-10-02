@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 08:16:48 by hmateque          #+#    #+#             */
-/*   Updated: 2024/10/01 12:41:01 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/02 08:57:28 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,5 @@ int	main(int ac, char **av)
 	}
 	else
 		error_stop("Error: ./philo num_philopher time_to_die time_to_eat time_to_sleep [num_of_each]");
-	// free(filo.filosofos);
-	// free(filo.garfos);
-	// free(filo.ids);
 	return (0);
 }
