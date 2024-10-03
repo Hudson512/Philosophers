@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 08:16:43 by hmateque          #+#    #+#             */
-/*   Updated: 2024/10/02 11:48:00 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:55:16 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,10 @@ typedef struct s_philo
 	long int		time_to_eat;
 	long int		time_to_sleep;
 	int				number_of_each;
-	// dados extras
 	long int		*last_meal_time;
 	int				*arr_number_each;
 	long int		start;
 	int				flag_de_morte;
-	// fim dos dados extras
 }					t_philo_info;
 
 typedef struct s_filo_param

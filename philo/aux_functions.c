@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:46:42 by hmateque          #+#    #+#             */
-/*   Updated: 2024/10/02 12:23:10 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:53:26 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	*monitor(void *arg)
 		while (++i < filo->num_philo)
 		{
 			current_time = get_current_time();
-			time_since_last_meal = (current_time - filo->last_meal_time[i] - filo->time_to_die);
+			time_since_last_meal = (current_time - filo->last_meal_time[i]
+					- filo->time_to_die);
 			(void)time_since_last_meal;
 			if ((current_time - filo->last_meal_time[i]) > filo->time_to_die)
 			{
 				filo->flag_de_morte = 1;
 				printf("\033[0;31m%ldms %d died\033[0m\n", (get_current_time()
 						- filo->start), (i + 1));
-				//printf("O filósofo %d morreu após %ldms.\n", (i + 1),time_since_last_meal);
 				return (NULL);
 			}
 		}
@@ -122,7 +122,6 @@ int	ft_init(t_philo_info *filo)
 		pthread_mutex_init(&filo->garfos[i], NULL);
 	}
 	i = -1;
-	//print_datas(filo);
 	while (++i < filo->num_philo)
 	{
 		params[i].id = i;
@@ -135,38 +134,4 @@ int	ft_init(t_philo_info *filo)
 		usleep(filo->num_philo * 100);
 	}
 	return (0);
-}
-
-void	add_value(t_philo_info *filo, int value, int i)
-{
-	if (i == 1)
-		filo->num_philo = value;
-	else if (i == 2)
-		filo->time_to_die = (long int)(value);
-	else if (i == 3)
-		filo->time_to_eat = (long int)(value * 1e3);
-	else if (i == 4)
-		filo->time_to_sleep = (long int)(value * 1e3);
-	else
-		filo->number_of_each = value;
-}
-
-long int	get_time_end(struct timeval *start)
-{
-	struct timeval	end;
-	long int		total_time;
-
-	gettimeofday(&end, NULL);
-	// Obtém o tempo atual diretamente
-	total_time = (end.tv_sec - start->tv_sec) * 1000 + (end.tv_usec
-			- start->tv_usec) / 1000; // Diferença em milissegundos
-	return (total_time);
-}
-
-long int	get_current_time(void)
-{
-	struct timeval	time;
-
-	gettimeofday(&time, NULL);
-	return (time.tv_sec * 1000) + (time.tv_usec / 1000);
 }
