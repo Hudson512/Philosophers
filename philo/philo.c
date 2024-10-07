@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 08:16:48 by hmateque          #+#    #+#             */
-/*   Updated: 2024/10/07 12:47:43 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:34:42 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,11 @@ int	main(int ac, char **av)
 		{
 			filo = (t_philo_info *)malloc(sizeof(t_philo_info)
 					* info_args.num_philo);
-			if (filo == NULL)
-				return (1);
 			set_philos(filo, &info_args);
-			if (!ft_init(filo, &info_args))
-			{
-				pthread_create(&monitor_thread, NULL, monitor, filo);
-				cleanup(filo, &info_args);
-				pthread_join(monitor_thread, NULL);
-			}
+			ft_init(filo, &info_args);
+			pthread_create(&monitor_thread, NULL, monitor, filo);
+			pthread_join(monitor_thread, NULL);
+			cleanup(filo, &info_args);
 		}
 	}
 	else

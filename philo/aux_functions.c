@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:46:42 by hmateque          #+#    #+#             */
-/*   Updated: 2024/10/07 12:27:59 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:44:18 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	*monitor(void *arg)
 		i = -1;
 		while (++i < filo->info->num_philo)
 		{
+			if (check_all_philo(filo))
+				return (NULL);
 			if (filo[i].philo_state == 1)
 			{
 				current_time = get_current_time();
@@ -109,21 +111,17 @@ int	ft_init(t_philo_info *filo, t_arg_info *info_args)
 	i = -1;
 	info_args->garfos = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
 			* info_args->num_philo);
-	if (info_args->garfos != NULL)
+	while (++i < info_args->num_philo)
+		pthread_mutex_init(&info_args->garfos[i], NULL);
+	i = -1;
+	while (++i < info_args->num_philo)
 	{
-		while (++i < info_args->num_philo)
-			pthread_mutex_init(&info_args->garfos[i], NULL);
-		i = -1;
-		while (++i < info_args->num_philo)
-		{
-			filo[i].last_meal_time = get_current_time();
-			if (info_args->number_of_each == 0)
-				pthread_create(&filo[i].filosofos, NULL, filosofar_1, &filo[i]);
-			else
-				pthread_create(&filo[i].filosofos, NULL, filosofar_2, &filo[i]);
-			usleep(info_args->num_philo * 100);
-		}
-		return (0);
+		filo[i].last_meal_time = get_current_time();
+		if (info_args->number_of_each == 0)
+			pthread_create(&filo[i].filosofos, NULL, filosofar_1, &filo[i]);
+		else
+			pthread_create(&filo[i].filosofos, NULL, filosofar_2, &filo[i]);
+		usleep(info_args->num_philo * 100);
 	}
-	return (1);
+	return (0);
 }

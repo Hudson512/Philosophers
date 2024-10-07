@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 08:16:43 by hmateque          #+#    #+#             */
-/*   Updated: 2024/10/07 12:10:47 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:49:00 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void				add_value(t_arg_info *info_args, int value, int i);
 int					is_digit(char c);
 int					ft_atoi(const char *nptr);
 int					error_stop(char *str);
+int					check_all_philo(t_philo_info *filo);
 int					ft_init(t_philo_info *filo, t_arg_info *info_args);
 int					checker_value_of_arguments(char *av);
 int					checker_of_arguments(int ac, char **av,
