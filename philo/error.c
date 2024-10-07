@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:57:16 by hmateque          #+#    #+#             */
-/*   Updated: 2024/10/03 14:52:56 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/07 11:40:34 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ long int	get_current_time(void)
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
-void	add_value(t_philo_info *filo, int value, int i)
+void	add_value(t_arg_info *info_args, int value, int i)
 {
 	if (i == 1)
-		filo->num_philo = value;
+		info_args->num_philo = value;
 	else if (i == 2)
-		filo->time_to_die = (long int)(value);
+		info_args->time_to_die = (long int)(value);
 	else if (i == 3)
-		filo->time_to_eat = (long int)(value * 1e3);
+		info_args->time_to_eat = (long int)(value * 1e3);
 	else if (i == 4)
-		filo->time_to_sleep = (long int)(value * 1e3);
+		info_args->time_to_sleep = (long int)(value * 1e3);
 	else
-		filo->number_of_each = value;
+		info_args->number_of_each = value;
 }

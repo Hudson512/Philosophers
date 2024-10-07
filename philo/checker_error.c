@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:37:15 by hmateque          #+#    #+#             */
-/*   Updated: 2024/10/02 08:56:40 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/07 11:24:42 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	checker_value_of_arguments(char *av)
 	return (0);
 }
 
-int	checker_of_arguments(int ac, char **av, t_philo_info *filo)
+int	checker_of_arguments(int ac, char **av, t_arg_info *info_args)
 {
 	int	i;
 	int	j;
@@ -38,19 +38,21 @@ int	checker_of_arguments(int ac, char **av, t_philo_info *filo)
 		}
 		if (checker_value_of_arguments(av[i]))
 			return (error_stop("Error in arguments!"));
-		add_value(filo, ft_atoi(av[i]), i);
+		add_value(info_args, ft_atoi(av[i]), i);
 	}
 	if (ac < 6)
-		filo->number_of_each = 0;
+		info_args->number_of_each = 0;
+	info_args->flag_de_morte = 0;
+	info_args->start = get_current_time();
 	return (0);
 }
 
 void	check_num_philo(t_philo_info *filo, int id)
 {
-	if (filo->num_philo == 1)
+	if (filo->info->num_philo == 1)
 	{
-		while (!filo->flag_de_morte)
-			usleep(filo->time_to_die);
-		pthread_mutex_unlock(&filo->garfos[id]);
+		while (!filo->info->flag_de_morte)
+			usleep(filo->info->time_to_die);
+		pthread_mutex_unlock(&filo->info->garfos[id]);
 	}
 }
