@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 08:16:43 by hmateque          #+#    #+#             */
-/*   Updated: 2024/10/07 13:49:00 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/08 11:10:57 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_filo_arguments
 	int				flag_de_morte;
 	int				num_philo;
 	pthread_mutex_t	*garfos;
+	pthread_mutex_t	death_mutex;
 }					t_arg_info;
 
 typedef struct s_philo

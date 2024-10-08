@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:37:15 by hmateque          #+#    #+#             */
-/*   Updated: 2024/10/07 13:48:24 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/08 11:10:44 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,18 @@ void	check_num_philo(t_philo_info *filo, int id)
 
 int	check_all_philo(t_philo_info *filo)
 {
-	int i;
+	int	i;
 
 	i = -1;
+	pthread_mutex_lock(&filo->info->death_mutex);
 	while (++i < filo->info->num_philo)
 	{
 		if (filo[i].philo_state == 1)
+		{
+			pthread_mutex_unlock(&filo->info->death_mutex);
 			return (0);
+		}
 	}
+	pthread_mutex_unlock(&filo->info->death_mutex);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:30:54 by hmateque          #+#    #+#             */
-/*   Updated: 2024/10/07 12:42:32 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/08 11:07:25 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,28 +59,28 @@ void	print_datas(t_philo_info *filo)
 
 int	print_status(char *str, int id, t_philo_info *filo)
 {
+	pthread_mutex_lock(&filo->info->death_mutex);
 	if (filo->info->flag_de_morte)
 	{
-		pthread_mutex_unlock(&filo->info->garfos[id]);
-		pthread_mutex_unlock(&filo->info->garfos[(id + 1)
-			% filo->info->num_philo]);
+		pthread_mutex_unlock(&filo->info->death_mutex);
 		return (1);
 	}
 	printf("%ldms %d %s\n", (get_current_time() - filo->info->start), (id + 1),
 		str);
+	pthread_mutex_unlock(&filo->info->death_mutex);
 	return (0);
 }
 
 int	print_status_eating(char *str, int id, t_philo_info *filo)
 {
+	pthread_mutex_lock(&filo->info->death_mutex);
 	if (filo->info->flag_de_morte)
 	{
-		pthread_mutex_unlock(&filo->info->garfos[id]);
-		pthread_mutex_unlock(&filo->info->garfos[(id + 1)
-			% filo->info->num_philo]);
+		pthread_mutex_unlock(&filo->info->death_mutex);
 		return (1);
 	}
 	printf("\033[0;34m%ldms %d %s\033[0m\n", (get_current_time()
 			- filo->info->start), (id + 1), str);
+	pthread_mutex_unlock(&filo->info->death_mutex);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/23 08:16:52 by hmateque          #+#    #+#              #
-#    Updated: 2024/10/07 13:13:40 by hmateque         ###   ########.fr        #
+#    Updated: 2024/10/08 11:13:57 by hmateque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ RM = rm -f
 
 SRC =   $(NAME).c\
         aux_functions.c\
+        aux_2_functions.c\
 		checker_error.c\
 		error.c\
 		mini_libft.c\
