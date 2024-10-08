@@ -6,13 +6,13 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 11:12:47 by hmateque          #+#    #+#             */
-/*   Updated: 2024/10/08 11:18:53 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/08 12:11:26 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	check_death(t_philo_info *filo, int i)
+void	check_death(t_philo_info *filo, int i)//
 {
 	long int	current_time;
 
@@ -25,7 +25,7 @@ void	check_death(t_philo_info *filo, int i)
 	}
 }
 
-int	check_philo_state(t_philo_info *filo, int i)
+int	check_philo_state(t_philo_info *filo, int i)//
 {
 	if (filo[i].philo_state == 1)
 	{

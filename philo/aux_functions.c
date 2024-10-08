@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:46:42 by hmateque          #+#    #+#             */
-/*   Updated: 2024/10/08 11:09:01 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/08 12:20:56 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	*monitor(void *arg)
 {
 	t_philo_info	*filo;
 	int				i;
-	long int		current_time;
 
 	filo = (t_philo_info *)arg;
 	while (1)
@@ -27,18 +26,10 @@ void	*monitor(void *arg)
 			if (check_all_philo(filo))
 				return (NULL);
 			pthread_mutex_lock(&filo->info->death_mutex);
-			if (filo[i].philo_state == 1)
+			if (check_philo_state(filo, i))
 			{
-				current_time = get_current_time();
-				if ((current_time
-						- filo[i].last_meal_time) > filo->info->time_to_die)
-				{
-					filo->info->flag_de_morte = 1;
-					printf("\033[0;31m%ldms %d died\033[0m\n", (current_time
-							- filo->info->start), (i + 1));
-					pthread_mutex_unlock(&filo->info->death_mutex);
-					return (NULL);
-				}
+				pthread_mutex_unlock(&filo->info->death_mutex);
+				return (NULL);
 			}
 			pthread_mutex_unlock(&filo->info->death_mutex);
 		}
@@ -54,7 +45,7 @@ void	*filosofar_1(void *arg)
 	filo = (t_philo_info *)arg;
 	while (1)
 	{
-		if ((filo->id > ((filo->id + 1) % filo->info->num_philo)))
+		if (!(filo->id > ((filo->id + 1) % filo->info->num_philo)))
 		{
 			pthread_mutex_lock(&filo->info->garfos[filo->id]);
 			if (print_status("has taken a fork", filo->id, filo))
@@ -106,11 +97,11 @@ void	*filosofar_1(void *arg)
 void	*filosofar_2(void *arg)
 {
 	t_philo_info	*filo;
-
+	
 	filo = (t_philo_info *)arg;
 	while (filo->number_each)
 	{
-		if ((filo->id > ((filo->id + 1) % filo->info->num_philo)))
+		if (!(filo->id > ((filo->id + 1) % filo->info->num_philo)))
 		{
 			pthread_mutex_lock(&filo->info->garfos[filo->id]);
 			if (print_status("has taken a fork", filo->id, filo))

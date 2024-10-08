@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 08:16:43 by hmateque          #+#    #+#             */
-/*   Updated: 2024/10/08 11:10:57 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/08 12:09:29 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_philo
 
 void				*filosofar_1(void *arg);
 void				*filosofar_2(void *arg);
+void				check_death(t_philo_info *filo, int i);
+int					check_philo_state(t_philo_info *filo, int i);
 void				*monitor(void *arg);
 void				cleanup(t_philo_info *filos, t_arg_info *info_args);
 void				set_philos(t_philo_info *filo, t_arg_info *info_args);
