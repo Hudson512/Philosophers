@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 08:16:43 by hmateque          #+#    #+#             */
-/*   Updated: 2024/10/08 12:09:29 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/09 11:09:48 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,10 @@ int					checker_of_arguments(int ac, char **av,
 						t_arg_info *info_args);
 long int			get_time_end(struct timeval *start);
 long int			get_current_time(void);
+int					take_forks(t_philo_info *filo, int first_fork,
+						int second_fork);
+int					eat(t_philo_info *filo);
+int					eat_2(t_philo_info *filo);
+int					sleep_and_think(t_philo_info *filo);
 
 #endif
