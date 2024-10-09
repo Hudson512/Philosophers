@@ -6,7 +6,7 @@
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:46:42 by hmateque          #+#    #+#             */
-/*   Updated: 2024/10/09 11:25:07 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:17:44 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	ft_init(t_philo_info *filo, t_arg_info *info_args)
 			pthread_create(&filo[i].filosofos, NULL, filosofar_1, &filo[i]);
 		else
 			pthread_create(&filo[i].filosofos, NULL, filosofar_2, &filo[i]);
-		usleep(info_args->num_philo * 100);
+		usleep(100);
 	}
 	return (0);
 }

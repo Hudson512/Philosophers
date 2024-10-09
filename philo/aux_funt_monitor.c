@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aux_2_function.c                                   :+:      :+:    :+:   */
+/*   aux_funt_monitor.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 11:12:47 by hmateque          #+#    #+#             */
-/*   Updated: 2024/10/09 09:51:28 by hmateque         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:31:42 by hmateque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	check_death(t_philo_info *filo, int i)
 	long int	current_time;
 
 	current_time = get_current_time();
-	if ((current_time - filo[i].last_meal_time) > filo->info->time_to_die)
+	if ((current_time - filo[i].last_meal_time) > (filo->info->time_to_die + 2))
 	{
 		filo->info->flag_de_morte = 1;
 		printf("\033[0;31m%ldms %d died\033[0m\n", (current_time

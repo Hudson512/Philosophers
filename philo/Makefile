@@ -6,13 +6,13 @@
 #    By: hmateque <hmateque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/23 08:16:52 by hmateque          #+#    #+#              #
-#    Updated: 2024/10/09 11:27:01 by hmateque         ###   ########.fr        #
+#    Updated: 2024/10/09 12:41:15 by hmateque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-CC = cc -fsanitize=thread
-FLAGS = -g -O0 -Wall -Wextra -Werror
+CC = cc
+FLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
 SRC =   $(NAME).c\
